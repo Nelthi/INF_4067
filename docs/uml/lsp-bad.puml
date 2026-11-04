@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title LSP - BAD : Square hérite de Rectangle et casse son contrat
+class Rectangle {
+  #width: int
+  #height: int
+  +setWidth(width: int)
+  +setHeight(height: int)
+  +getArea(): int
+}
+class Square {
+  +setWidth(width: int)
+  +setHeight(height: int)
+}
+Rectangle <|-- Square
+note right of Square
+  setWidth modifie aussi la hauteur :
+  5 x 4 donne 16 au lieu de 20
+end note
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title SRP - GOOD : une classe = une responsabilité
+class Book <<entité>> {
+  -title: String
+  -author: String
+  -content: String
+  +getTitle(): String
+  +getAuthor(): String
+  +getContent(): String
+}
+class BookPrinter <<présentation>> {
+  +printToScreen(book: Book)
+  +printToHTML(book: Book)
+}
+class BookSaver <<persistance>> {
+  +saveToDatabase(book: Book)
+  +saveToFile(book: Book, filename: String)
+}
+class BookBusinessLogic <<métier>> {
+  +emprunter(book: Book, lecteur: String)
+  +autreService(book: Book)
+}
+BookPrinter ..> Book
+BookSaver ..> Book
+BookBusinessLogic ..> Book
+@enduml

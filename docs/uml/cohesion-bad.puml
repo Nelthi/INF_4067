@@ -1,0 +1,27 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title Cohésion / couplage - BAD : faible cohésion, fort couplage
+class Commande {
+  -prixItems: List<Double>
+  -total: double
+  +calculerTotal()
+  +sauvegarderDansBaseMysql()
+}
+class MysqlConnection {
+  +MysqlConnection(host, user, password)
+  +executerRequete(requete: String)
+}
+Commande ..> MysqlConnection : <<create>>
+note bottom of Commande
+  Métier + technique mélangés.
+  Figée sur MySQL, non testable seule.
+end note
+@enduml

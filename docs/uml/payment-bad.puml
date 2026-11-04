@@ -1,0 +1,20 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title Payment - BAD : un seul processeur, des types en String
+class PaymentProcessor {
+  +processPayment(paymentType: String, amount: double)
+}
+note right of PaymentProcessor
+  if / else if sur le type :
+  mobil_pay, credit_card, paypal, crypto
+  Nouveau moyen de paiement = modifier la classe (OCP)
+end note
+@enduml

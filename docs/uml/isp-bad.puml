@@ -1,0 +1,23 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title ISP - BAD : interface Worker trop large
+interface Worker {
+  +work()
+  +eat()
+}
+class HumanWorker
+class RobotWorker
+Worker <|.. HumanWorker
+Worker <|.. RobotWorker
+note right of RobotWorker
+  eat() lève UnsupportedOperationException
+end note
+@enduml

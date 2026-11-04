@@ -1,0 +1,21 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title DIP - BAD : le haut niveau dépend du bas niveau concret
+class OrderProcessor {
+  -database: MySQLDatabase
+  +OrderProcessor()
+  +processOrder(order: String)
+}
+class MySQLDatabase {
+  +save(data: String)
+}
+OrderProcessor --> MySQLDatabase : new MySQLDatabase()
+@enduml

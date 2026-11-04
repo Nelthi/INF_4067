@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title Cohésion / couplage - GOOD : forte cohésion, faible couplage
+class Commande {
+  -prixItems: List<Double>
+  +calculerTotal(): double
+}
+class CommandeRepository {
+  -db: BaseDeDonnees
+  +CommandeRepository(db: BaseDeDonnees)
+  +sauvegarder(commande: Commande)
+}
+interface BaseDeDonnees {
+  +executer(requete: String)
+}
+class MysqlDatabase
+BaseDeDonnees <|.. MysqlDatabase
+CommandeRepository o--> BaseDeDonnees
+CommandeRepository ..> Commande
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title Payment - GOOD : abstraction PaymentMethod + injection
+interface PaymentMethod {
+  +processPayment(amount: double)
+}
+class CreditCardPayment
+class MobilePayment
+class CryptoPayment
+class PayPalPayment
+class PaymentProcessor {
+  -paymentMethod: PaymentMethod
+  +PaymentProcessor(paymentMethod: PaymentMethod)
+  +processPayment(amount: double)
+}
+PaymentMethod <|.. CreditCardPayment
+PaymentMethod <|.. MobilePayment
+PaymentMethod <|.. CryptoPayment
+PaymentMethod <|.. PayPalPayment
+PaymentProcessor o--> PaymentMethod
+@enduml

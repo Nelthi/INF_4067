@@ -1,0 +1,31 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title OCP - BAD : AreaCalculator modifié à chaque nouvelle forme
+class AreaCalculator {
+  +calculateArea(shape: Object): double
+}
+class Rectangle {
+  -width: double
+  -height: double
+  +getWidth(): double
+  +getHeight(): double
+}
+class Circle {
+  -radius: double
+  +getRadius(): double
+}
+AreaCalculator ..> Rectangle
+AreaCalculator ..> Circle
+note right of AreaCalculator
+  instanceof Rectangle / Circle
+  Ajouter Triangle = modifier cette classe
+end note
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title DIP - GOOD : les deux dépendent de l'abstraction Database
+class OrderProcessor {
+  -database: Database
+  +OrderProcessor(database: Database)
+  +processOrder(order: String)
+}
+interface Database {
+  +save(data: String)
+}
+class MySQLDatabase
+class MongoDBDatabase
+OrderProcessor o--> Database
+Database <|.. MySQLDatabase
+Database <|.. MongoDBDatabase
+@enduml

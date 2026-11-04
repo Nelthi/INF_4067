@@ -1,0 +1,29 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam class {
+  BackgroundColor #F4F9E8
+  BorderColor #5B7F00
+}
+skinparam NoteBackgroundColor #FFF6D6
+hide empty members
+title SRP - BAD : Book cumule 4 responsabilités
+class Book {
+  -title: String
+  -author: String
+  -content: String
+  +getTitle(): String
+  +getAuthor(): String
+  +getContent(): String
+  +printToScreen()
+  +saveToDatabase()
+  +emprunter(lecteur: String)
+}
+note right of Book
+  Données (entité)
+  Présentation
+  Persistance
+  Logique métier
+end note
+@enduml

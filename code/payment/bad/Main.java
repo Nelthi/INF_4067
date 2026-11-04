@@ -1,11 +1,11 @@
+package payment.bad;
 
 public class Main {
-    public static void main(String[] args){
-        paymentProcessor processor = new paymentProcessor();
-        processor.paymentProcess("mobil_pay", 1500);
-        processor.paymentProcess("credit_card", 6500);
-        processor.paymentProcess("crypto", 8500);
-
+    public static void main(String[] args) {
+        PaymentProcessor processor = new PaymentProcessor();
+        processor.processPayment("mobil_pay", 1500);
+        processor.processPayment("credit_card", 6500);
+        processor.processPayment("paypal", 4500);
+        processor.processPayment("crypto", 8500);
     }
-    
 }
